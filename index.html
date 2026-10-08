@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>English Games 🇬🇧🇺🇸</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6ff;
+    color:#20243a;
+    transition:.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:#f3f4f6;
+}
+
+header{
+    background:linear-gradient(135deg,#172554,#4338ca,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:55px 20px;
+}
+
+header h1{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+header p{
+    font-size:19px;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:white;
+    padding:12px;
+    text-align:center;
+    box-shadow:0 3px 15px #0002;
+}
+
+body.dark nav{
+    background:#1f2937;
+}
+
+nav a{
+    color:#3730a3;
+    text-decoration:none;
+    font-weight:bold;
+    margin:6px;
+    display:inline-block;
+}
+
+body.dark nav a{
+    color:#c7d2fe;
+}
+
+section{
+    max-width:900px;
+    margin:auto;
+    padding:50px 18px;
+}
+
+h2{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.game{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    margin-bottom:30px;
+    box-shadow:0 8px 25px #00000012;
+    text-align:center;
+}
+
+body.dark .game{
+    background:#1f2937;
+}
+
+.game h3{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.question{
+    font-size:21px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.answers{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+}
+
+.answer{
+    background:#eef2ff;
+    color:#312e81;
+    padding:17px;
+    border-radius:14px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+body.dark .answer{
+    background:#374151;
+    color:#e0e7ff;
+}
+
+.answer:hover{
+    transform:scale(1.03);
+}
+
+.correct{
+    background:#bbf7d0!important;
+    color:#166534!important;
+}
+
+.wrong{
+    background:#fecaca!important;
+    color:#991b1b!important;
+}
+
+button{
+    border:none;
+    background:#4f46e5;
+    color:white;
+    padding:13px 22px;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#3730a3;
+}
+
+.score{
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    margin:20px;
+}
+
+.result{
+    font-size:21px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+input{
+    padding:12px;
+    border-radius:10px;
+    border:2px solid #c7d2fe;
+    font-size:18px;
+    width:100%;
+    max-width:350px;
+    text-align:center;
+    margin-top:10px;
+}
+
+.timer{
+    font-size:30px;
+    font-weight:bold;
+    margin:15px;
+}
+
+footer{
+    background:#172554;
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.small{
+    opacity:.7;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+header h1{
+    font-size:34px;
+}
+
+h2{
+    font-size:27px;
+}
+
+.game{
+    padding:22px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🎮 English Games 🇬🇧🇺🇸</h1>
+
+<p>
+Играй, проверяй себя и узнавай разницу между
+британским и американским английским!
+</p>
+
+<button onclick="toggleTheme()">🌙 Сменить тему</button>
+
+</header>
+
+
+<nav>
+
+<a href="#game1">🇬🇧🇺🇸</a>
+<a href="#game2">🧩 Пары</a>
+<a href="#game3">✏️ Spelling</a>
+<a href="#game4">🔤 Слова</a>
+<a href="#game5">⚡ Блиц</a>
+<a href="#game6">🧠 Тест</a>
+
+</nav>
+
+
+<!-- GAME 1 -->
+
+<section id="game1">
+
+<h2>🇬🇧🇺🇸 Игра 1 — Британское или американское?</h2>
+
+<div class="game">
+
+<h3>Угадай вариант</h3>
+
+<div class="question" id="q1">
+Какой вариант обычно используется в британском английском?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="choice(this,true)">
+flat
+</div>
+
+<div class="answer" onclick="choice(this,false)">
+apartment
+</div>
+
+</div>
+
+<div class="result" id="r1"></div>
+
+<button onclick="newQuestion1()">Следующий вопрос</button>
+
+</div>
+
+</section>
+
+
+<!-- GAME 2 -->
+
+<section id="game2">
+
+<h2>🧩 Игра 2 — Найди пару</h2>
+
+<div class="game">
+
+<h3>Соедини британское слово с американским</h3>
+
+<div class="question">
+Какое американское слово соответствует <b>lift</b>?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="pair(this,false)">
+truck
+</div>
+
+<div class="answer" onclick="pair(this,true)">
+elevator
+</div>
+
+<div class="answer" onclick="pair(this,false)">
+vacation
+</div>
+
+<div class="answer" onclick="pair(this,false)">
+cookie
+</div>
+
+</div>
+
+<div class="result" id="pairResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- GAME 3 -->
+
+<section id="game3">
+
+<h2>✏️ Игра 3 — Spelling Challenge</h2>
+
+<div class="game">
+
+<h3>Выбери британское написание</h3>
+
+<div class="question">
+Как правильно в британском английском?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="spell(this,true)">
+colour
+</div>
+
+<div class="answer" onclick="spell(this,false)">
+color
+</div>
+
+</div>
+
+<div class="result" id="spellResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- GAME 4 -->
+
+<section id="game4">
+
+<h2>🔤 Игра 4 — Угадай значение</h2>
+
+<div class="game">
+
+<h3>Что означает слово?</h3>
+
+<div class="question">
+Что такое <b>lorry</b>?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="meaning(this,false)">
+легковая машина
+</div>
+
+<div class="answer" onclick="meaning(this,true)">
+грузовик
+</div>
+
+<div class="answer" onclick="meaning(this,false)">
+самолёт
+</div>
+
+<div class="answer" onclick="meaning(this,false)">
+велосипед
+</div>
+
+</div>
+
+<div class="result" id="meaningResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- GAME 5 -->
+
+<section id="game5">
+
+<h2>⚡ Игра 5 — Блиц</h2>
+
+<div class="game">
+
+<h3>10 секунд на ответ!</h3>
+
+<div class="timer" id="timer">
+10
+</div>
+
+<div class="question" id="blitzQuestion">
+Что является американским вариантом слова "holiday"?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="blitz(this,true)">
+vacation
+</div>
+
+<div class="answer" onclick="blitz(this,false)">
+holiday
+</div>
+
+<div class="answer" onclick="blitz(this,false)">
+autumn
+</div>
+
+</div>
+
+<div class="result" id="blitzResult"></div>
+
+<button onclick="startTimer()">▶️ Начать блиц</button>
+
+</div>
+
+</section>
+
+
+<!-- GAME 6 -->
+
+<section id="game6">
+
+<h2>🧠 Игра 6 — Большой тест</h2>
+
+<div class="game">
+
+<h3>Проверь свои знания</h3>
+
+
+<div class="question">
+1. Как британцы обычно называют квартиру?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="quiz(this,true)">flat</div>
+<div class="answer" onclick="quiz(this,false)">apartment</div>
+
+</div>
+
+
+<div class="question">
+2. Как американцы называют грузовик?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="quiz(this,false)">lorry</div>
+<div class="answer" onclick="quiz(this,true)">truck</div>
+
+</div>
+
+
+<div class="question">
+3. Какое написание британское?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="quiz(this,true)">favourite</div>
+<div class="answer" onclick="quiz(this,false)">favorite</div>
+
+</div>
+
+
+<div class="question">
+4. Какое слово чаще используется в США?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="quiz(this,false)">petrol</div>
+<div class="answer" onclick="quiz(this,true)">gas</div>
+
+</div>
+
+
+<div class="question">
+5. Какое слово британское?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="quiz(this,true)">biscuit</div>
+<div class="answer" onclick="quiz(this,false)">cookie</div>
+
+</div>
+
+
+<div class="score">
+🏆 Очки: <span id="score">0</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXTRA GAME -->
+
+<section>
+
+<h2>🎯 Игра 7 — Правда или миф?</h2>
+
+<div class="game">
+
+<div class="question">
+🇬🇧🇺🇸 Британский и американский английский — это два разных языка.
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="truth(this,false)">
+Правда
+</div>
+
+<div class="answer" onclick="truth(this,true)">
+Миф
+</div>
+
+</div>
+
+<div class="result" id="truthResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- EXTRA GAME -->
+
+<section>
+
+<h2>🔮 Игра 8 — Закончи пару</h2>
+
+<div class="game">
+
+<div class="question">
+🇬🇧 colour → 🇺🇸 ?
+</div>
+
+<div class="answers">
+
+<div class="answer" onclick="pair2(this,true)">
+color
+</div>
+
+<div class="answer" onclick="pair2(this,false)">
+colour
+</div>
+
+<div class="answer" onclick="pair2(this,false)">
+colours
+</div>
+
+</div>
+
+<div class="result" id="pair2Result"></div>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section>
+
+<h2>🏆 Твой результат</h2>
+
+<div class="game">
+
+<p>
+Ты уже знаешь разницу между британским
+и американским английским!
+</p>
+
+<div class="score">
+⭐ Всего очков: <span id="totalScore">0</span>
+</div>
+
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+🔝 Вернуться наверх
+</button>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h2 style="color:white">
+🇬🇧 British English × 🇺🇸 American English
+</h2>
+
+<p>
+Один язык — много вариантов.
+</p>
+
+<br>
+
+<p class="small">
+Играй • Учись • Проверяй себя
+</p>
+
+</footer>
+
+
+<script>
+
+let score = 0;
+
+
+/* ОБЩИЙ СЧЁТ */
+
+function addScore(){
+
+score++;
+
+document.getElementById("score").textContent = score;
+
+document.getElementById("totalScore").textContent = score;
+
+}
+
+
+/* GAME 1 */
+
+function choice(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("r1").textContent =
+"🎉 Правильно! flat — британский вариант.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("r1").textContent =
+"❌ Неверно. apartment — американский вариант.";
+
+}
+
+}
+
+
+function newQuestion1(){
+
+let questions=[
+
+["Какой вариант обычно используется в британском английском?",
+"flat",
+"apartment"],
+
+["Какой вариант американский?",
+"truck",
+"lorry"],
+
+["Какое слово британское?",
+"holiday",
+"vacation"],
+
+["Какое слово американское?",
+"elevator",
+"lift"]
+
+];
+
+let q=questions[Math.floor(Math.random()*questions.length)];
+
+document.getElementById("q1").textContent=q[0];
+
+document.querySelector("#game1 .answers").innerHTML=
+
+`
+<div class="answer" onclick="choice(this,true)">
+${q[1]}
+</div>
+
+<div class="answer" onclick="choice(this,false)">
+${q[2]}
+</div>
+`;
+
+document.getElementById("r1").textContent="";
+
+}
+
+
+/* GAME 2 */
+
+function pair(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("pairResult").textContent=
+"🎉 Верно! lift = elevator.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("pairResult").textContent=
+"❌ Попробуй ещё раз в следующей игре.";
+
+}
+
+}
+
+
+/* GAME 3 */
+
+function spell(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("spellResult").textContent=
+"🎉 Правильно! colour — британское написание.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("spellResult").textContent=
+"❌ color — американское написание.";
+
+}
+
+}
+
+
+/* GAME 4 */
+
+function meaning(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("meaningResult").textContent=
+"🎉 Правильно! lorry = грузовик.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("meaningResult").textContent=
+"❌ Неверно.";
+
+}
+
+}
+
+
+/* BLITZ */
+
+let time=10;
+let timerInterval;
+
+function startTimer(){
+
+clearInterval(timerInterval);
+
+time=10;
+
+document.getElementById("timer").textContent=time;
+
+timerInterval=setInterval(function(){
+
+time--;
+
+document.getElementById("timer").textContent=time;
+
+if(time<=0){
+
+clearInterval(timerInterval);
+
+document.getElementById("blitzResult").textContent=
+"⏰ Время вышло!";
+
+}
+
+},1000);
+
+}
+
+
+function blitz(el,correct){
+
+if(time<=0) return;
+
+clearInterval(timerInterval);
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("blitzResult").textContent=
+"⚡ Отлично! vacation — американский вариант.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("blitzResult").textContent=
+"❌ Неверно.";
+
+}
+
+}
+
+
+/* QUIZ */
+
+function quiz(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+}
+
+}
+
+
+/* TRUE / FALSE */
+
+function truth(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("truthResult").textContent=
+"🎉 Верно! Это один язык с разными вариантами.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("truthResult").textContent=
+"❌ Это миф.";
+
+}
+
+}
+
+
+/* PAIR 2 */
+
+function pair2(el,correct){
+
+if(el.parentElement.dataset.done) return;
+
+el.parentElement.dataset.done="1";
+
+if(correct){
+
+el.classList.add("correct");
+
+document.getElementById("pair2Result").textContent=
+"🎉 Правильно! colour → color.";
+
+addScore();
+
+}else{
+
+el.classList.add("wrong");
+
+document.getElementById("pair2Result").textContent=
+"❌ Неверно.";
+
+}
+
+}
+
+
+/* DARK MODE */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+}
+
+</script>
+
+</body>
+</html>
